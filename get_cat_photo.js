@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
+const fs = require('fs')
 const Flickr = require('flickrapi')
 const download = require('image-downloader')
+
+let dirname = process.env.FLICKR_DEST || 'photos'
 
 let flickrOptions = {
 	api_key: process.env.FLICKR_API_KEY,
@@ -85,14 +88,17 @@ function downloadPhoto(url) {
 
 	const options = {
 	  url: url,
-	  dest: 'photos'                  // Save to /path/to/dest/image.jpg
+	  dest: dirname
+	}
+
+	if (!fs.existsSync(dirname)) {
+		fs.mkdirSync(dirname)
+		console.log('created directory', dirname)
 	}
 
 	return download.image(options)
 	  .then(({ filename, image }) => {
 	    console.log('File saved to', filename)
 			return filename
-	  }).catch((err) => {
-	    throw err
 	  })
 }
