@@ -40,7 +40,7 @@ let photo_filename = url.then((url) => {
 	return downloadPhoto(url)
 })
 
-photo_filename.then(console.log).catch(console.error)
+photo_filename.then(console.log).catch(console.error).then(process.exit)
 
 
 function randomIndex() {
