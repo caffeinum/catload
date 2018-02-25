@@ -32,6 +32,7 @@ let searchOptions = {
 	license: '2,3,4,5,6,9',
 	safe_search: 3,
 	sort: 'interestingness-desc',
+	orientation: 'square',
 	text: query
 }
 
